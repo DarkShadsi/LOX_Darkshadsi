@@ -113,7 +113,13 @@ public class Interpreter implements Expr.Visitor<Object> {
                     return (String)left + (String)right;
                 }
 
-                //TODO: allow string concatenation if one is string and the other is a number
+                if(left instanceof String && right instanceof Double) {
+                    return (String)left + stringify(right);
+                }
+
+                if(left instanceof Double && right instanceof String) {
+                    return stringify(left) + (String)right;
+                }
 
                 throw new RuntimeError(expr.operator, "Operands must be two numbers or two strings.");
             case SLASH:
