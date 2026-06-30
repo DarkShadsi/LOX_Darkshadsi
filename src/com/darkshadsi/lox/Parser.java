@@ -102,6 +102,7 @@ class Parser {
         Stmt thenBranch = statement();
         Stmt elseBranch = null;
         if(match(ELSE)) elseBranch = statement();
+        //TODO: allow else-if statements
 
         return new Stmt.If(condition, thenBranch, elseBranch);
     }
